@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="assets/css/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/css/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/css/style.css">
+    <style>
+    </style>
   </head>
   <body>
     <div class="site-mobile-menu site-navbar-target">
@@ -21,8 +23,8 @@
       <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
         <div class="container">
           <div class="row align-items-center position-relative">
-            <div class="site-logo" style="">
-              <a href="index.php" class="text-black"><span class="text-primary">Brand</a>
+            <div class="site-logo" >
+              <a href="index.php" class="text-black"><span style="color: #e99c2e;">Furniject</a>
             </div>
             <div class="col-12">
               <nav class="site-navigation text-right ml-auto " role="navigation">
@@ -31,20 +33,12 @@
                   <li><a href="shop.php" class="shop">Shop</a></li>
                   <li><a href="acset.php" class="acset">Account Settings</a></li>
                   <li><a href="cart.php" class="cart">Cart</a></li>
-                  <li><a href="#testimonials-section" class="nav-link">Testimonials</a></li>
-                  <li><a href="#blog-section" class="nav-link">Blog</a></li>
-                  <li><a href="#contact-section" class="nav-link">Contact</a></li>
                 </ul>
               </nav>
             </div>
             <div class="toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
           </div>
         </div>
-      </header>
-    <script src="assets/js/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/js/popper.min.js"></script>
-    <script src="assets/js/js/bootstrap.min.js"></script>
-    <script src="assets/js/js/jquery.sticky.js"></script>
-    <script src="assets/js/js/main.js"></script>
+      </header> 
   </body>
 </html>

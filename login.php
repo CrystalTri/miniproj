@@ -1,3 +1,4 @@
+<?php include 'server.php';?>
 <?php include 'navbar.php';?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,10 +14,20 @@
 <body>
     <div class="wrapper">
         <header>Login Form</header>
-        <form action="#">
+        <form action="--loginsuccess.php" method ="post">
+        <?php if (isset($_SESSION['error'])) : ?>
+				<div class="error">
+					<h3>
+						<?php 
+							echo $_SESSION['error'];
+							unset($_SESSION['error']);
+						?>
+					</h3>
+				</div>
+				<?php endif; ?>
             <div class="field email">
                 <div class="input-area">
-                    <input type="text" placeholder="Email Address">
+                    <input type="text" name="Member_user" placeholder="Email Address">
                     <i class="icon fas fa-envelope"></i>
                     <i class="error error-icon fas fa-exclamation-circle"></i>
                 </div>
@@ -24,14 +35,14 @@
             </div>
             <div class="field password">
                 <div class="input-area">
-                    <input type="password" placeholder="Password">
+                    <input type="password" name="Member_pass" placeholder="Password">
                     <i class="icon fas fa-lock"></i>
                     <i class="error error-icon fas fa-exclamation-circle"></i>
                 </div>
                 <div class="error error-txt">Password can't be blank</div>
             </div>
             <!-- <div class="pass-txt"><a href="#">Forgot password?</a></div> -->
-            <input type="submit" value="Login">
+            <input type="submit" name="login_user" value="Login">
         </form>
         <div class="sign-txt">Not yet member? <a href="register.php">Signup now</a></div>
     </div>
