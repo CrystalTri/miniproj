@@ -1,3 +1,6 @@
+<?php 
+    sestion_start();
+    include 'server.php';?>
 <?php include 'navbar.php';?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -20,7 +23,8 @@
 <body>
   <div class="wrapper">
     <h2>Registration</h2>
-    <form id="form1" name="form1" method="post" action="--Registersuccess.php">
+    <form id="form1" name="form1" action="--Registersuccess.php" method="post" >
+      <?php include('error.php'); ?>
       <div class="input-box">
         <input type="text" name="First_name" id="First_name" placeholder="Enter your name" required>
       </div>
@@ -38,7 +42,7 @@
         <h3>I accept all terms & condition</h3>
       </div>
       <div class="input-box button">
-      <input type="Submit" value="Register Now" onclick="validatePassword()">
+      <input type="Submit" name="reg_user" value="Register Now" onclick="validatePassword()"><a href="login.php"></a>
       </div>
       <div class="text">
         <h3>Already have an account? <a href="login.php">Login now</a></h3>

@@ -1,3 +1,7 @@
+<?php 
+	session_start();
+include 'server.php';?>
+
 <?php include 'navbar.php';?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -5,8 +9,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> -->
-        <title>Furniture</title>
+        <title>Furniject</title>
 		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
         <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 		<link rel="stylesheet" href="assets/css/linearicons.css">
@@ -155,7 +158,7 @@
 					</div>
 				</div>
 			</div>
-		</header>
+		<!-- </header>
 		<section id="populer-products" class="populer-products">
 			<div class="container">
 				<div class="populer-products-content">
@@ -609,8 +612,25 @@
 						</div>
 					</div>
 
-			</div>
+			</div> -->
+		<div class="content">
 
+			<?php if (isset($_SESSION['success'])) : ?>
+				<div class="success">
+					<h3>
+						<?php 
+							echo $_SESSION['success'];
+							unset($_SESSION['success']);
+						?>
+					</h3>
+				</div>
+				<?php endif; ?>
+
+			<?php if(isset($_SESSION['Member_user'])) : ?>
+				<p>Welcome<strong><?php echo $_SESSION['Member_user']; ?></strong></p>
+				<p><a href="index.php?logout='1'" stype ='color : red;'>logout</a></p>
+			<?php endif ?>
+		</div>
 		</section>
 		<?php include 'footer.php';?>
 		<script src="assets/js/jquery.js"></script>

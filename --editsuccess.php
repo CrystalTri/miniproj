@@ -1,15 +1,15 @@
 <?php
 require '--conn.php';
-$sql_update="UPDATE member SET First_name='$_POST[inputFirstName]',Last_name='$_POST[inputLastName]' ,Member_user='$_POST[inputEmailAddress]' ,Birth_date='$_POST[birthday]' WHERE Member_id='1001' ";
+$sql_update = "UPDATE member SET First_name='$_POST[inputFirstName]',Last_name='$_POST[inputLastName]',Member_user='$_POST[inputEmailAddress]',Birth_date='$_POST[birthday]' WHERE Member_id='1001'";
+$result = $conn->query($sql_update);
 
-$result= $conn->query($sql_update);
-
-if(!$result) {
-    die("Error God Damn it : ". $conn->error);
+if (!$result) {
+    die("Error: " . $conn->error);
 } else {
-
-echo "Edit Success <br>";
-header("refresh: 1; url=http://localhost/1-miniproject-main/miniproject/acset.php");
+    echo '<script>';
+    echo 'alert("Edit Success");';
+    echo 'window.location.href = "http://localhost/miniproj/acset.php   ";';
+    echo '</script>';
 }
 
 ?>

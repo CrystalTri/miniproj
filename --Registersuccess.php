@@ -1,39 +1,49 @@
-<?php
-require '--conn.php';
+<?php 
+    session_start();
+    include('server.php');
+    $error = array();
 
-// ตรวจสอบว่าอีเมล์ที่ผู้ใช้ป้อนอยู่ในฐานข้อมูลหรือไม่
-$existing_email = $_POST['Member_user'];
-$check_query = "SELECT Member_user FROM member WHERE Member_user = '$existing_email'";
-$check_result = $conn->query($check_query);
+    if (isset($_POST['reg_user'])) {
+        $First_name = mysqli_real_escape_string($conn, $_POST['First_name']);
+        $Member_user = mysqli_real_escape_string($conn, $_POST['Member_user']);
+        $Member_pass = mysqli_real_escape_string($conn, $_POST['Member_pass']);
+        $Confirm_pass = mysqli_real_escape_string($conn, $_POST['Confirm_pass']);
 
-if ($check_result->num_rows > 0) {
-    // แสดงป็อปอัพเมื่ออีเมล์ซ้ำกันถูกป้อน
-    echo '<script>alert("อีเมล์นี้มีอยู่แล้วในระบบ");</script>';
-    
-    // หลังจากปิบป็อบอัพ ให้ใช้ JavaScript เพื่อนำกลับไปยังหน้าสมัครสมาชิก
-    echo '<script>window.location.href = "register.php";</script>';
-} else {
-    // ถ้าไม่มีอีเมล์นี้ในฐานข้อมูล สามารถทำการสมัครสมาชิกได้
-    $first_name = $_POST['First_name'];
-    $member_user = $_POST['Member_u9o871sxcvf.ser'];
-    $member_pass = $_POST['Member_pass'];
+        if (empty($First_name)) {
+            array_push($errors,'username not specified');
+        }
+        if (empty($Member_user)) {
+            array_push($errors,'membername not specified');
+        }
+        if (empty($Member_pass)) {
+            array_push($errors,'password not specified');
+        }
+        if ($Member_pass != $Confirm_pass){
+            array_push($errors,"password not matches");
+        }
 
-    $sql_update = "INSERT INTO member (First_name, Member_user, Member_pass) VALUES ('$first_name', '$member_user', '$member_pass')";
+        $user_check_query = "SELECT * FROM member where Member_user = '$Member_user' or Member_pass = '$Member_pass' ";
+        $query = mysqli_query($conn, $user_check_query);
+        $result = mysqli_fetch_assoc($query);
 
-    $result = $conn->query($sql_update);
+        if($result){
+            if($result['Member_user'] === $Member_user){
+                array_push($errors,"Username already in use");
+            }
+            if($result['Member_pass'] === $Member_pass){
+                array_push($errors, "password already in use");
+            }
 
-    if (!$result) {
-        die("Error: " . $conn->error);
-    } else {
-        echo "Insert Success <br>";
-        header("refresh: 1; url=http://localhost/1-miniproject-main/miniproject/login.php");
+            if (count($errors) == 0){
+                $password == md5($Member_pass);
+
+                $sql = "INSERT INTO member (First_name ,Member_user,Member_pass ) VALUES ('$First_name','$Member_user', '$Member_pass')";
+                mysqli_query($conn,$sql);
+
+                $_SESSION['Member_name'] = $Member_name;
+                $_SESSION['success'] = "Now you are connected";
+                header("Location: login.php");
+            }
+        }
     }
-}
 ?>
-<script>
-// เมื่อป็บป็อบอัพปิด
-window.addEventListener('load', function () {
-    // นำกลับไปยังหน้าสมัครสมาชิก
-    window.location.href = "register.php";
-});
-</script>
